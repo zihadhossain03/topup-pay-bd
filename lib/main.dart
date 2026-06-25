@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 92,
               height: 92,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(.12),
+                color: Colors.white.withValues(alpha: .12),
                 borderRadius: BorderRadius.circular(28),
                 border: Border.all(color: Colors.white24),
               ),
@@ -208,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                           width: 42,
                           height: 42,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(.16),
+                            color: Colors.white.withValues(alpha: .16),
                             borderRadius: BorderRadius.circular(14),
                             border: Border.all(color: Colors.white24),
                           ),
@@ -1155,7 +1155,7 @@ class WalletScreen extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 24,
-            backgroundColor: color.withOpacity(.12),
+            backgroundColor: color.withValues(alpha: .12),
             child: Icon(icon, color: color, size: 24),
           ),
           const SizedBox(width: 12),
@@ -1292,7 +1292,7 @@ class WalletActionCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 24,
-            backgroundColor: color.withOpacity(.12),
+            backgroundColor: color.withValues(alpha: .12),
             child: Icon(icon, color: color, size: 26),
           ),
           const SizedBox(height: 10),
@@ -1481,7 +1481,7 @@ class HistoryScreen extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 24,
-            backgroundColor: iconColor.withOpacity(.12),
+            backgroundColor: iconColor.withValues(alpha: .12),
             child: Icon(icon, color: iconColor, size: 24),
           ),
           const SizedBox(width: 12),
@@ -1761,7 +1761,7 @@ class ProfileScreen extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 24,
-            backgroundColor: color.withOpacity(.12),
+            backgroundColor: color.withValues(alpha: .12),
             child: Icon(icon, color: color, size: 24),
           ),
           const SizedBox(width: 12),
@@ -1821,7 +1821,7 @@ class ServiceCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 24,
-            backgroundColor: color.withOpacity(.12),
+            backgroundColor: color.withValues(alpha: .12),
             child: Icon(icon, color: color, size: 26),
           ),
           const SizedBox(height: 10),
@@ -1865,7 +1865,7 @@ class BankingCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 22,
-            backgroundColor: color.withOpacity(.12),
+            backgroundColor: color.withValues(alpha: .12),
             child: Icon(icon, color: color, size: 24),
           ),
           const SizedBox(height: 10),
