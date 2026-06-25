@@ -1310,3 +1310,576 @@ class WalletActionCard extends StatelessWidget {
     );
   }
 }
+class HistoryScreen extends StatelessWidget {
+  const HistoryScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F7F5),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Transaction History',
+          style: TextStyle(
+            color: Color(0xFF18231B),
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF0B7A33), Color(0xFF149647)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'This Month Summary',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '৳ 8,450 Total Transaction',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Recharge, wallet topup, cashback and bill payments',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 18),
+
+            const Text(
+              'Recent Transactions',
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF18231B),
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            _historyTile(
+              title: 'Grameenphone Recharge',
+              subtitle: '017XXXXXXXX • Today, 10:15 AM',
+              amount: '-৳ 100',
+              amountColor: const Color(0xFFE53935),
+              icon: Icons.phone_android_rounded,
+              iconColor: const Color(0xFF0B7A33),
+            ),
+            const SizedBox(height: 10),
+
+            _historyTile(
+              title: 'Add Money from bKash',
+              subtitle: 'Wallet top-up • Today, 11:30 AM',
+              amount: '+৳ 2,000',
+              amountColor: const Color(0xFF0B7A33),
+              icon: Icons.account_balance_wallet_rounded,
+              iconColor: const Color(0xFFE2136E),
+            ),
+            const SizedBox(height: 10),
+
+            _historyTile(
+              title: 'Internet Pack Purchase',
+              subtitle: 'Robi Internet Offer • Yesterday',
+              amount: '-৳ 48',
+              amountColor: const Color(0xFFE53935),
+              icon: Icons.language_rounded,
+              iconColor: const Color(0xFF1E88E5),
+            ),
+            const SizedBox(height: 10),
+
+            _historyTile(
+              title: 'Cashback Received',
+              subtitle: 'Recharge cashback • Yesterday',
+              amount: '+৳ 5',
+              amountColor: const Color(0xFF0B7A33),
+              icon: Icons.card_giftcard_rounded,
+              iconColor: const Color(0xFFFF9800),
+            ),
+            const SizedBox(height: 10),
+
+            _historyTile(
+              title: 'Electricity Bill Payment',
+              subtitle: 'Palli Bidyut • 2 days ago',
+              amount: '-৳ 650',
+              amountColor: const Color(0xFFE53935),
+              icon: Icons.receipt_long_rounded,
+              iconColor: const Color(0xFF7B1FA2),
+            ),
+            const SizedBox(height: 10),
+
+            _historyTile(
+              title: 'Nagad Cash In',
+              subtitle: '018XXXXXXXX • 3 days ago',
+              amount: '+৳ 1,500',
+              amountColor: const Color(0xFF0B7A33),
+              icon: Icons.local_fire_department_rounded,
+              iconColor: const Color(0xFFFF6D00),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _historyTile({
+    required String title,
+    required String subtitle,
+    required String amount,
+    required Color amountColor,
+    required IconData icon,
+    required Color iconColor,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x12000000),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 24,
+            backgroundColor: iconColor.withOpacity(.12),
+            child: Icon(icon, color: iconColor, size: 24),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14.5,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF18231B),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    color: Color(0xFF6B756E),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Text(
+            amount,
+            style: TextStyle(
+              fontSize: 14.5,
+              fontWeight: FontWeight.w800,
+              color: amountColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F7F5),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'My Profile',
+          style: TextStyle(
+            color: Color(0xFF18231B),
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 24),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF0B7A33), Color(0xFF149647)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Column(
+                children: [
+                  const CircleAvatar(
+                    radius: 36,
+                    backgroundColor: Colors.white24,
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 42,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  const Text(
+                    'Md Jihad Hossen',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  const Text(
+                    '017XXXXXXXX',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _profileStatBox(
+                          title: 'Total Recharge',
+                          value: '125',
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _profileStatBox(
+                          title: 'Cashback',
+                          value: '৳ 550',
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 18),
+
+            _sectionTitle('Account'),
+            const SizedBox(height: 10),
+            _profileMenuTile(
+              icon: Icons.account_circle_rounded,
+              title: 'Personal Information',
+              subtitle: 'Name, phone, email details',
+              color: const Color(0xFF0B7A33),
+            ),
+            const SizedBox(height: 10),
+            _profileMenuTile(
+              icon: Icons.account_balance_wallet_rounded,
+              title: 'Saved Wallet Accounts',
+              subtitle: 'bKash, Nagad, Rocket accounts',
+              color: const Color(0xFFE2136E),
+            ),
+            const SizedBox(height: 10),
+            _profileMenuTile(
+              icon: Icons.history_rounded,
+              title: 'Transaction Reports',
+              subtitle: 'Recharge and payment history',
+              color: const Color(0xFF1565C0),
+            ),
+
+            const SizedBox(height: 18),
+
+            _sectionTitle('Settings'),
+            const SizedBox(height: 10),
+            _profileMenuTile(
+              icon: Icons.notifications_active_rounded,
+              title: 'Notifications',
+              subtitle: 'Offer, recharge, cashback alerts',
+              color: const Color(0xFFFF9800),
+            ),
+            const SizedBox(height: 10),
+            _profileMenuTile(
+              icon: Icons.security_rounded,
+              title: 'Security & PIN',
+              subtitle: 'Password, PIN, account protection',
+              color: const Color(0xFF7B1FA2),
+            ),
+            const SizedBox(height: 10),
+            _profileMenuTile(
+              icon: Icons.help_center_rounded,
+              title: 'Help & Support',
+              subtitle: 'FAQ, contact and support center',
+              color: const Color(0xFF009688),
+            ),
+
+            const SizedBox(height: 24),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                ),
+                onPressed: () {},
+                icon: const Icon(Icons.logout_rounded),
+                label: const Text(
+                  'Logout',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static Widget _sectionTitle(String title) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w800,
+          color: Color(0xFF18231B),
+        ),
+      ),
+    );
+  }
+
+  static Widget _profileStatBox({
+    required String title,
+    required String value,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white12,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: Colors.white10),
+      ),
+      child: Column(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _profileMenuTile({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required Color color,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x12000000),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 24,
+            backgroundColor: color.withOpacity(.12),
+            child: Icon(icon, color: color, size: 24),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14.5,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF18231B),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    color: Color(0xFF6B756E),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Icon(Icons.chevron_right_rounded, color: Color(0xFF9AA59D)),
+        ],
+      ),
+    );
+  }
+}
+
+class ServiceCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final Color color;
+
+  const ServiceCard({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8FAF8),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE7ECE8)),
+      ),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 24,
+            backgroundColor: color.withOpacity(.12),
+            child: Icon(icon, color: color, size: 26),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF18231B),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BankingCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final Color color;
+
+  const BankingCard({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8FAF8),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE7ECE8)),
+      ),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 22,
+            backgroundColor: color.withOpacity(.12),
+            child: Icon(icon, color: color, size: 24),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12.5,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF18231B),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
