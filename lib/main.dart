@@ -21,12 +21,78 @@ class TopUpPayBDApp extends StatelessWidget {
           primary: const Color(0xFF0B7A33),
         ),
       ),
-      home: const HomeScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
+
+  @override
+  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+}
+
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
+  int currentIndex = 0;
+
+  final List<Widget> screens = const [
+    HomeScreen(),
+    RechargeScreen(),
+    WalletScreen(),
+    HistoryScreen(),
+    ProfileScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    const primaryGreen = Color(0xFF0B7A33);
+
+    return Scaffold(
+      body: screens[currentIndex],
+      bottomNavigationBar: NavigationBar(
+        height: 72,
+        backgroundColor: Colors.white,
+        indicatorColor: const Color(0x1A0B7A33),
+        selectedIndex: currentIndex,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        onDestinationSelected: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home_rounded, color: primaryGreen),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.phone_android_outlined),
+            selectedIcon:
+                Icon(Icons.phone_android_rounded, color: primaryGreen),
+            label: 'Recharge',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.account_balance_wallet_outlined),
+            selectedIcon:
+                Icon(Icons.account_balance_wallet_rounded, color: primaryGreen),
+            label: 'Wallet',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.history_outlined),
+            selectedIcon: Icon(Icons.history_rounded, color: primaryGreen),
+            label: 'History',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person, color: primaryGreen),
+            label: 'Profile',
+          ),
+        ],
+      ),
+    );
+    class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
@@ -44,7 +110,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ===== Header =====
+              // Header
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
@@ -60,8 +126,11 @@ class HomeScreen extends StatelessWidget {
                         CircleAvatar(
                           radius: 20,
                           backgroundColor: Colors.white24,
-                          child: Icon(Icons.wifi_tethering_rounded,
-                              color: Colors.white, size: 24),
+                          child: Icon(
+                            Icons.wifi_tethering_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          ),
                         ),
                         SizedBox(width: 12),
                         Expanded(
@@ -74,8 +143,11 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Icon(Icons.notifications_none_rounded,
-                            color: Colors.white, size: 26),
+                        Icon(
+                          Icons.notifications_none_rounded,
+                          color: Colors.white,
+                          size: 26,
+                        ),
                       ],
                     ),
                     SizedBox(height: 14),
@@ -93,7 +165,7 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              // ===== Balance Card =====
+              // Balance Card
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
@@ -170,7 +242,6 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              // ===== Quick Services Card =====
               _sectionTitle('Quick Services'),
               const SizedBox(height: 10),
               Container(
@@ -234,7 +305,6 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              // ===== Mobile Banking =====
               _sectionTitle('Mobile Banking'),
               const SizedBox(height: 10),
               Container(
@@ -290,7 +360,6 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              // ===== Promo Banner =====
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
@@ -343,7 +412,7 @@ class HomeScreen extends StatelessWidget {
                       width: 84,
                       height: 84,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.12),
+                        color: Colors.white12,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Icon(
@@ -383,9 +452,9 @@ class HomeScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.12),
+        color: Colors.white12,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.white.withOpacity(0.10)),
+        border: Border.all(color: Colors.white10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -410,6 +479,139 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+    class RechargeScreen extends StatelessWidget {
+  const RechargeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SimplePage(
+      title: 'Recharge',
+      subtitle: 'Mobile recharge services screen',
+      icon: Icons.phone_android_rounded,
+    );
+  }
+}
+
+class WalletScreen extends StatelessWidget {
+  const WalletScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SimplePage(
+      title: 'Wallet',
+      subtitle: 'Wallet balance and add money screen',
+      icon: Icons.account_balance_wallet_rounded,
+    );
+  }
+}
+
+class HistoryScreen extends StatelessWidget {
+  const HistoryScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SimplePage(
+      title: 'History',
+      subtitle: 'All transaction history screen',
+      icon: Icons.history_rounded,
+    );
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SimplePage(
+      title: 'Profile',
+      subtitle: 'User profile and settings screen',
+      icon: Icons.person_rounded,
+    );
+  }
+}
+
+class SimplePage extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+
+  const SimplePage({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const primaryGreen = Color(0xFF0B7A33);
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F7F5),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Color(0xFF18231B),
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x12000000),
+                blurRadius: 12,
+                offset: Offset(0, 6),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 84,
+                height: 84,
+                decoration: BoxDecoration(
+                  color: const Color(0x1A0B7A33),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Icon(icon, size: 42, color: primaryGreen),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFF18231B),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                subtitle,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF6B756E),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -427,39 +629,31 @@ class ServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF8FBF8),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xFFE6ECE7)),
-        ),
-        child: Column(
-          children: [
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Icon(icon, color: color, size: 28),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8FAF8),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE7ECE8)),
+      ),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 24,
+            backgroundColor: color.withOpacity(.12),
+            child: Icon(icon, color: color, size: 26),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF18231B),
             ),
-            const SizedBox(height: 12),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF18231B),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -479,23 +673,36 @@ class BankingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(18),
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 6),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF8FBF8),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFE6ECE7)),
-        ),
-        child: Column(
-          children: [
-            Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Icon(icon, color: color, size:
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8FAF8),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE7ECE8)),
+      ),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 22,
+            backgroundColor: color.withOpacity(.12),
+            child: Icon(icon, color: color, size: 24),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12.5,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF18231B),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+  }
+    }
+  }
+}
